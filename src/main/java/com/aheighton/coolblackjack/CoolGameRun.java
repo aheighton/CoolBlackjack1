@@ -5,11 +5,15 @@ import com.aheighton.blackjack.Player;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CoolGameRun
 {
 	public static void main(String[] args)
 	{
+		final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
 		Player player1 = new CoolBlackjackPlayer("Player1", false, false);
 		Player player2 = new CoolBlackjackPlayer("Player2", true, false);
 		Player player3 = new CoolBlackjackPlayer("Player3", true, true);
@@ -29,14 +33,14 @@ public class CoolGameRun
 			System.out.println(game.play(player1));
 			move = scanner.nextLine().toLowerCase();
 
-			if (move.equals("hit") || move.equals("stick") || move.equals("cheat")) System.out.println(game.play(player1, move));
+			if (move.equals("hit") || move.equals("stick") || move.equals("cheat")) LOGGER.log(Level.INFO,game.play(player1, move));
 		} while ((!move.equals("stick") && (player1.getHand().getScore() <= 21)));
 
 
-		System.out.println(game.play(players.get(1)));
-		System.out.println(game.play(players.get(2)));
+		LOGGER.log(Level.INFO,game.play(players.get(1)));
+		LOGGER.log(Level.INFO,game.play(players.get(2)));
 
-		System.out.println(game.getWinner().getName() + " wins!");
+		LOGGER.log(Level.INFO,game.getWinner().getName() + " wins!");
 	}
 
 }
