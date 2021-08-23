@@ -15,11 +15,11 @@ public class Deck extends Pile
 
 	public void shuffle()
 	{
+		Random r = new Random();
 		List<Card> newDeck = new LinkedList<>();
 
 		while (!getContents().isEmpty())
 		{
-			Random r = new Random();
 			int index =(r.nextInt(getContents().size()));
 
 			newDeck.add(getContents().get(index));
