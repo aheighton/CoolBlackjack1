@@ -6,6 +6,8 @@ import java.util.Random;
 
 public class Deck extends Pile
 {
+	static Random r = new Random();
+
 	public Deck()
 	{
 		List<Card> contents = new LinkedList<>();
@@ -15,18 +17,22 @@ public class Deck extends Pile
 
 	public void shuffle()
 	{
-		Random r = new Random();
 		List<Card> newDeck = new LinkedList<>();
 
 		while (!getContents().isEmpty())
 		{
-			int index =(r.nextInt(getContents().size()));
+			int index =(getR().nextInt(getContents().size()));
 
 			newDeck.add(getContents().get(index));
 			getContents().remove(getContents().get(index));
 		}
 
 		setContents(newDeck);
+	}
+
+	public static Random getR()
+	{
+		return r;
 	}
 
 

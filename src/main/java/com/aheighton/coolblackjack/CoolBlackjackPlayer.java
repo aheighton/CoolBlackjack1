@@ -1,8 +1,7 @@
 package com.aheighton.coolblackjack;
 
 import com.aheighton.blackjack.BlackJackPlayer;
-
-import java.util.Random;
+import com.aheighton.blackjack.Deck;
 
 
 public class CoolBlackjackPlayer extends BlackJackPlayer
@@ -32,8 +31,7 @@ public class CoolBlackjackPlayer extends BlackJackPlayer
 	@Override
 	public void newAbility()
 	{
-		Random r = new Random();
-		int index = r.nextInt(CHEATS.length);
+		int index = Deck.getR().nextInt(CHEATS.length);
 		setAbility(CHEATS[index]);
 	}
 

@@ -13,6 +13,7 @@ public class CoolGameRun
 	public static void main(String[] args)
 	{
 		final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+		String output;
 
 		Player player1 = new CoolBlackjackPlayer("Player1", false, false);
 		Player player2 = new CoolBlackjackPlayer("Player2", true, false);
@@ -30,17 +31,25 @@ public class CoolGameRun
 		String move;
 		do
 		{
-			System.out.println(game.play(player1));
+			output = game.play(player1);
+			logger.log(Level.INFO,output);
 			move = scanner.nextLine().toLowerCase();
 
-			if (move.equals("hit") || move.equals("stick") || move.equals("cheat")) logger.log(Level.INFO,game.play(player1, move));
+			if (move.equals("hit") || move.equals("stick") || move.equals("cheat"))
+			{
+				output = game.play(player1, move);
+				logger.log(Level.INFO,output);
+			}
 		} while ((!move.equals("stick") && (player1.getHand().getScore() <= 21)));
 
 
-		logger.log(Level.INFO,game.play(players.get(1)));
-		logger.log(Level.INFO,game.play(players.get(2)));
+		output = game.play(players.get(1));
+		logger.log(Level.INFO,output);
+		output = game.play(players.get(2));
+		logger.log(Level.INFO,output);
 
-		logger.log(Level.INFO,game.getWinner().getName() + " wins!");
+		output = game.getWinner().getName() + " wins!";
+		logger.log(Level.INFO,output);
 	}
 
 }

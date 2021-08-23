@@ -2,17 +2,17 @@ package com.aheighton.coolblackjack;
 
 import com.aheighton.blackjack.BlackJackGame;
 import com.aheighton.blackjack.Card;
+import com.aheighton.blackjack.Deck;
 import com.aheighton.blackjack.Player;
 import java.util.List;
-import java.util.Random;
 
 public class CoolBlackjackGame extends BlackJackGame
 {
-	final static String hit = "hit";
-	final static String stick = "stick";
-	final static String has = " has ";
-	final static String scoreOf = ", a score of ";
-	final static String cheat = "cheat";
+	static final String HIT = "hit";
+	static final String STICK = "stick";
+	static final String HAS = " has ";
+	static final String SCORE_OF = ", a score of ";
+	static final String CHEAT = "cheat";
 
 	public CoolBlackjackGame(List<Player> players)
 	{
@@ -22,8 +22,8 @@ public class CoolBlackjackGame extends BlackJackGame
 	@Override
 	public void deal()
 	{
-		for (Player player: getPlayers()) play(player, hit);
-		for (Player player: getPlayers()) play(player, hit);
+		for (Player player: getPlayers()) play(player, HIT);
+		for (Player player: getPlayers()) play(player, HIT);
 		for (Player player: getPlayers()) player.newAbility();
 	}
 
@@ -37,34 +37,34 @@ public class CoolBlackjackGame extends BlackJackGame
 			String move;
 			do
 			{
-				move = stick;
+				move = STICK;
 				
 				if (!player.getAbility().equals(""))
 				{
-					move = cheat;
+					move = CHEAT;
 				} else if (player.isDealer())
 				{
-					move = player.getHand().getScore() < 16? hit : stick;
+					move = player.getHand().getScore() < 16? HIT : STICK;
 				}
 				else
 				{
 					//TODO: work out what move the CPU will make
 					if (player.getHand().getScore() < 16)
 					{
-						move = hit;
+						move = HIT;
 					}
 				}
 				output.append(play(player, move));
 
 
 
-			} while ((player.getHand().getScore() <= 21) && !move.equals(stick));
+			} while ((player.getHand().getScore() <= 21) && !move.equals(STICK));
 		}
 		else
 		{
-			output.append(player.getName()).append(has).append(player.getHand().toString());
+			output.append(player.getName()).append(HAS).append(player.getHand().toString());
 
-			output.append(scoreOf).append(player.getHand().getScore()).append(".");
+			output.append(SCORE_OF).append(player.getHand().getScore()).append(".");
 
 			output.append(player.getAbility().equals("")?"\nHit or Stick?":"\nHit, Stick, or Cheat? \nYour cheat is: "+player.getAbility()+".");
 
@@ -75,7 +75,6 @@ public class CoolBlackjackGame extends BlackJackGame
 	@Override
 	public String play(Player player, String move)
 	{
-		Random r = new Random();
 
 		StringBuilder output = new StringBuilder();
 
@@ -85,20 +84,20 @@ public class CoolBlackjackGame extends BlackJackGame
 			{
 				output.append("Dealer ");
 			}
-			output.append(player.getName()).append(has).append(player.getHand().toString());
-			output.append(scoreOf).append(player.getHand().getScore()).append(". ");
+			output.append(player.getName()).append(HAS).append(player.getHand().toString());
+			output.append(SCORE_OF).append(player.getHand().getScore()).append(". ");
 
-			if (move.equals(stick)) output.append("Stick.");
-			else if (move.equals(hit)) output.append("Hit.\n");
+			if (move.equals(STICK)) output.append("Stick.");
+			else if (move.equals(HIT)) output.append("Hit.\n");
 			else output.append("Cheat!\n");
 		}
 
-		if (move.equals(hit))
+		if (move.equals(HIT))
 		{
 			player.hit(getDeck().removeCard());
 		}
 
-		else if (move.equals(cheat))
+		else if (move.equals(CHEAT))
 		{
 			if (player.isCPU())
 			{
@@ -107,7 +106,7 @@ public class CoolBlackjackGame extends BlackJackGame
 					//TODO: make this more robust! Having the names of cheats hardcoded is not very good for expansion
 					case "Free ace" -> {
 						output.append(player.getName()).append(" snuck a card onto the table!\n");
-						int suitNo = r.nextInt(4);
+						int suitNo = Deck.getR().nextInt(4);
 						player.hit(new Card("A", new char[]{'C', 'H', 'S', 'D'}[suitNo]));
 						//TODO: this should be a static variable.
 					}
@@ -137,7 +136,7 @@ public class CoolBlackjackGame extends BlackJackGame
 				{
 					case "Free ace" -> {
 						output.append("you sneak an ace onto the table!\n");
-						int suitNo = (r.nextInt(4));
+						int suitNo = (Deck.getR().nextInt(4));
 						player.hit(new Card("A", new char[]{'C', 'H', 'S', 'D'}[suitNo]));
 					}
 					case "Ditch last card" -> {
@@ -157,7 +156,7 @@ public class CoolBlackjackGame extends BlackJackGame
 						output.append("you turn over everyone's cards!\n");
 						for (Player opponent : getPlayers())
 						{
-							output.append(opponent.getName()).append(has).append(opponent.getHand().toString());
+							output.append(opponent.getName()).append(HAS).append(opponent.getHand().toString());
 							output.append(".\n");
 						}
 					}
@@ -186,7 +185,7 @@ public class CoolBlackjackGame extends BlackJackGame
 				output.append("Dealer ");
 			}
 
-			output.append(player.getName()).append(has).append(player.getHand().toString()).append(scoreOf);
+			output.append(player.getName()).append(HAS).append(player.getHand().toString()).append(SCORE_OF);
 			output.append(player.getHand().getScore()).append(". Bust.");
 		}
 

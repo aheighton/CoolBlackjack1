@@ -4,10 +4,10 @@ import java.util.*;
 
 public class BlackJackGame extends Game
 {
-	final static String hit = "hit";
-	final static String stick = "stick";
-	final static String has = " has ";
-	final static String scoreOf = ", a score of ";
+	static final String HIT = "hit";
+	static final String STICK = "stick";
+	static final String HAS = " has ";
+	static final String SCORE_OF = ", a score of ";
 
 	public BlackJackGame(List<Player> players)
 	{
@@ -19,8 +19,8 @@ public class BlackJackGame extends Game
 	@Override
 	public void deal()
 	{
-		for (Player player: getPlayers()) play(player, hit);
-		for (Player player: getPlayers()) play(player, hit);
+		for (Player player: getPlayers()) play(player, HIT);
+		for (Player player: getPlayers()) play(player, HIT);
 	}
 	
 	public String play(Player player)
@@ -32,31 +32,31 @@ public class BlackJackGame extends Game
 			String move;
 			do
 			{
-				move = stick;
+				move = STICK;
 
 				if (player.isDealer())
 				{
-					move = player.getHand().getScore() < 16? hit : stick;
+					move = player.getHand().getScore() < 16? HIT : STICK;
 				}
 				else
 				{
 					//TODO: work out what move the CPU will make
 					if (player.getHand().getScore() < 16)
 					{
-						move = hit;
+						move = HIT;
 					}
 				}
 				output.append(play(player, move));
 
 
 
-			 } while ((player.getHand().getScore() <= 21) && move.equals(hit));
+			 } while ((player.getHand().getScore() <= 21) && move.equals(HIT));
 		}
 		else
 		{
-			output.append(player.getName()).append(has).append(player.getHand().toString());
+			output.append(player.getName()).append(HAS).append(player.getHand().toString());
 
-			output.append(scoreOf).append(player.getHand().getScore()).append(".");
+			output.append(SCORE_OF).append(player.getHand().getScore()).append(".");
 
 			output.append("\nHit or Stick?");
 		}
@@ -74,11 +74,11 @@ public class BlackJackGame extends Game
 			{
 				output += "Dealer ";
 			}
-			output += player.getName() + has + player.getHand().toString() +
-					scoreOf + player.getHand().getScore() + ". " + (move.equals(hit) ? "Hit. \n" : "Stick.");
+			output += player.getName() + HAS + player.getHand().toString() +
+					SCORE_OF + player.getHand().getScore() + ". " + (move.equals(HIT) ? "Hit. \n" : "Stick.");
 		}
 
-		if (move.equals(hit))
+		if (move.equals(HIT))
 		{
 			player.hit(getDeck().removeCard());
 		}
@@ -99,8 +99,8 @@ public class BlackJackGame extends Game
 				output += "Dealer ";
 			}
 
-			output +=player.getName() + has + player.getHand().toString() +
-					scoreOf + player.getHand().getScore() +	". Bust.";
+			output +=player.getName() + HAS + player.getHand().toString() +
+					SCORE_OF + player.getHand().getScore() +	". Bust.";
 		}
 
 		return output;

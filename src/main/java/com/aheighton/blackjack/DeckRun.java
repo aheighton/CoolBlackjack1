@@ -15,6 +15,7 @@ public class DeckRun
 	public static void runGame()
 	{
 		final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+		String output;
 
 		List<Player> players = new LinkedList<>();
 		Player player = new BlackJackPlayer("Player",false,false);
@@ -33,17 +34,25 @@ public class DeckRun
 		String move;
 		do
 		{
-			System.out.println(game.play(player));
+			output = game.play(player);
+			logger.log(Level.INFO,output);
 			move = scanner.nextLine().toLowerCase();
 
-			if (move.equals("hit") || move.equals("stick")) logger.log(Level.INFO, game.play(player, move));
+			if (move.equals("hit") || move.equals("stick")){
+				output = game.play(player, move);
+				logger.log(Level.INFO,output);
+			}
 		} while ((!move.equals("stick") && (player.getHand().getScore() <= 21)));
 
 
-		logger.log(Level.INFO,game.play(players.get(1)));
-		logger.log(Level.INFO,game.play(players.get(2)));
+		output = game.play(players.get(1));
+		logger.log(Level.INFO,output);
 
-		logger.log(Level.INFO,game.getWinner().getName() + " wins!");
+		output = game.play(players.get(2));
+		logger.log(Level.INFO,output);
+
+		output = game.getWinner().getName() + " wins!";
+		logger.log(Level.INFO,output);
 
 	}
 }
