@@ -85,6 +85,7 @@ public class Card
 			case 'H' -> output.append("♥");
 			case 'S' -> output.append("♠");
 			case 'D' -> output.append("♦");
+			default -> output.append("?");
 		}
 
 		output.append("]"+ANSI_RESET);

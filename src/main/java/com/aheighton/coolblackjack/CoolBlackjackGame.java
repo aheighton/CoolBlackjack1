@@ -1,9 +1,10 @@
-package com.aheighton.coolBlackjack;
+package com.aheighton.coolblackjack;
 
 import com.aheighton.blackjack.BlackJackGame;
 import com.aheighton.blackjack.Card;
 import com.aheighton.blackjack.Player;
 import java.util.List;
+import java.util.Random;
 
 public class CoolBlackjackGame extends BlackJackGame
 {
@@ -98,7 +99,8 @@ public class CoolBlackjackGame extends BlackJackGame
 					//TODO: make this more robust! Having the names of cheats hardcoded is not very good for expansion
 					case "Free ace" -> {
 						output.append(player.getName()).append(" snuck a card onto the table!\n");
-						int suitNo = (int) (Math.random()*4);
+						Random r = new Random();
+						int suitNo = r.nextInt(4);
 						player.hit(new Card("A", new char[]{'C', 'H', 'S', 'D'}[suitNo]));
 						//TODO: this should be a static variable.
 					}
@@ -117,6 +119,8 @@ public class CoolBlackjackGame extends BlackJackGame
 
 					}
 					case "See other hands" -> output.append(player.getName()).append(" looked at everyone's hands!\n");
+
+					default -> output.append(player.getName()).append("tries and fails to cheat again!\n");
 				}
 			} else
 			{
@@ -126,7 +130,8 @@ public class CoolBlackjackGame extends BlackJackGame
 				{
 					case "Free ace" -> {
 						output.append("you sneak an ace onto the table!\n");
-						int suitNo = (int) (Math.random() * 4);
+						Random r = new Random();
+						int suitNo = (r.nextInt(4));
 						player.hit(new Card("A", new char[]{'C', 'H', 'S', 'D'}[suitNo]));
 					}
 					case "Ditch last card" -> {

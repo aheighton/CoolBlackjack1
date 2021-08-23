@@ -1,6 +1,8 @@
-package com.aheighton.coolBlackjack;
+package com.aheighton.coolblackjack;
 
 import com.aheighton.blackjack.BlackJackPlayer;
+
+import java.util.Random;
 
 
 public class CoolBlackjackPlayer extends BlackJackPlayer
@@ -15,19 +17,25 @@ public class CoolBlackjackPlayer extends BlackJackPlayer
 		setAbility("");
 	}
 
+	@Override
 	public String getAbility()
 	{
 		return ability;
 	}
 
+	@Override
 	public void setAbility(String ability)
 	{
 		this.ability = ability;
 	}
 
+	@Override
 	public void newAbility()
 	{
-		int index = (int) (Math.random()*CHEATS.length);
+		Random r = new Random();
+		int index = r.nextInt(CHEATS.length);
 		setAbility(CHEATS[index]);
 	}
+
+
 }

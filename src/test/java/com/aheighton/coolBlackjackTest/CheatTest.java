@@ -1,15 +1,15 @@
 package com.aheighton.coolBlackjackTest;
 
 import com.aheighton.blackjack.*;
-import com.aheighton.coolBlackjack.*;
+import com.aheighton.coolblackjack.*;
 import org.junit.jupiter.api.*;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CheatTest
+class CheatTest
 {
 	@Test
-	public void testCheatAssign()
+	void testCheatAssign()
 	{
 		Player player = new CoolBlackjackPlayer("Player",true,false);
 
@@ -21,7 +21,7 @@ public class CheatTest
 	}
 
 	@Test
-	public void testRemoveCard()
+	void testRemoveCard()
 	{
 		Player player = new CoolBlackjackPlayer("Player",true,false);
 		Player dealer = new CoolBlackjackPlayer("Dealer",true,true);
@@ -32,10 +32,10 @@ public class CheatTest
 		game.deal();
 		player.setAbility("Ditch last card");
 
-		assertEquals(player.getHand().getContents().size(),2,"Player's hand before cheat is incorrect.");
+		assertEquals(2, player.getHand().getContents().size(),"Player's hand before cheat is incorrect.");
 
 		game.play(player,"cheat");
-		assertEquals(player.getHand().getContents().size(),1,"Player's hand after cheat is incorrect.");
+		assertEquals(1, player.getHand().getContents().size(),"Player's hand after cheat is incorrect.");
 
 		Hand hand1 = new Hand();
 		hand1.addCard(new Card("A",'C'));
@@ -46,14 +46,14 @@ public class CheatTest
 
 		game.play(player, "stick");
 
-		assertEquals(player.getHand().getScore(), 16, "Player's score before cheat is incorrect.");
+		assertEquals(16, player.getHand().getScore(), "Player's score before cheat is incorrect.");
 
 		game.play(player,"cheat");
-		assertEquals(player.getHand().getScore(), 21, "Player's score after cheat does not adjust Aces.");
+		assertEquals(21, player.getHand().getScore(), "Player's score after cheat does not adjust Aces.");
 	}
 
 	@Test
-	public void testAddAce()
+	void testAddAce()
 	{
 		Player player = new CoolBlackjackPlayer("Player",true,false);
 		Player dealer = new CoolBlackjackPlayer("Dealer",true,true);
@@ -64,10 +64,10 @@ public class CheatTest
 		game.deal();
 		player.setAbility("Free ace");
 
-		assertEquals(player.getHand().getContents().size(),2,"Player's hand before cheat is incorrect.");
+		assertEquals(2, player.getHand().getContents().size(),"Player's hand before cheat is incorrect.");
 
 		game.play(player,"cheat");
-		assertEquals(player.getHand().getContents().size(),3,"Player's hand after cheat is incorrect.");
+		assertEquals(3, player.getHand().getContents().size(),"Player's hand after cheat is incorrect.");
 
 		Hand hand1 = new Hand();
 		hand1.addCard(new Card("A",'C'));
@@ -78,9 +78,9 @@ public class CheatTest
 
 		game.play(player, "stick");
 
-		assertEquals(player.getHand().getScore(), 21, "Player's score before cheat is incorrect.");
+		assertEquals(21, player.getHand().getScore(),  "Player's score before cheat is incorrect.");
 
 		game.play(player,"cheat");
-		assertEquals(player.getHand().getScore(), 12, "Player's score after cheat does not adjust Aces.");
+		assertEquals(12, player.getHand().getScore(),  "Player's score after cheat does not adjust Aces.");
 	}
 }

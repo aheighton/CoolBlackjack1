@@ -107,12 +107,9 @@ public class BlackJackGame extends Game
 		Player winner = getPlayers().get(0);
 		for (Player player: getPlayers())
 		{
-			if (winner.getHand().getScore() < player.getHand().getScore())
+			if ((winner.getHand().getScore() < player.getHand().getScore()) && (player.getHand().getScore() <= 21))
 			{
-				if (player.getHand().getScore() <= 21)
-				{
 					winner = player;
-				}
 			}
 		}
 		return winner;

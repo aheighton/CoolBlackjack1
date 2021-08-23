@@ -42,9 +42,9 @@ public abstract class Player
 		return isCPU;
 	}
 
-	public void setCPU(boolean CPU)
+	public void setCPU(boolean isCPU)
 	{
-		isCPU = CPU;
+		this.isCPU = isCPU;
 	}
 
 	public abstract void hit(Card card);

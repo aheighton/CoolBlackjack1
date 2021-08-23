@@ -5,10 +5,10 @@ import org.junit.jupiter.api.*;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GameTest
+class GameTest
 {
 	@Test
-	public void testGameStart(){
+	void testGameStart(){
 		Player player1 = new BlackJackPlayer("P1",true,false);
 		Player player2 = new BlackJackPlayer("P2",true,true);
 		List<Player> players = new LinkedList<>();
@@ -21,7 +21,7 @@ public class GameTest
 		game.setDeck(new Deck());
 		game.deal();
 
-		assertEquals(player1.getHand().getContents().size(),2,"Players are not dealt 2 cards to start.");
+		assertEquals(2, player1.getHand().getContents().size(),"Players are not dealt 2 cards to start.");
 		assertEquals(player1.getHand().getContents().size(),player2.getHand().getContents().size(),"Players are not dealt the same size hand to start.");
 
 		Hand hand1 = new Hand();

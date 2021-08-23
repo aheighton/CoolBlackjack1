@@ -18,7 +18,7 @@ public class BlackJackPlayer extends Player
 	@Override
 	public void newAbility()
 	{
-
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -30,6 +30,6 @@ public class BlackJackPlayer extends Player
 	@Override
 	public void setAbility(String s)
 	{
-
+		throw new UnsupportedOperationException();
 	}
 }

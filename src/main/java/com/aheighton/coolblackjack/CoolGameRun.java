@@ -1,4 +1,4 @@
-package com.aheighton.coolBlackjack;
+package com.aheighton.coolblackjack;
 
 import com.aheighton.blackjack.Game;
 import com.aheighton.blackjack.Player;

@@ -1,7 +1,8 @@
 package com.aheighton.blackjack;
 
-import java.util.*;
-import java.lang.Math;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 public class Deck extends Pile
 {
@@ -18,7 +19,8 @@ public class Deck extends Pile
 
 		while (!getContents().isEmpty())
 		{
-			int index = (int) (Math.random()*getContents().size());
+			Random r = new Random();
+			int index =(r.nextInt(getContents().size()));
 
 			newDeck.add(getContents().get(index));
 			getContents().remove(getContents().get(index));
