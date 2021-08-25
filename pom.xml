@@ -18,6 +18,7 @@
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../target/jacoco.exec</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.language>java</sonar.language>
+        <sonar.coverage.exclusions>**/*DeckRun.java,**/*CoolGameRun.java</sonar.coverage.exclusions>
     </properties>
 
     <dependencies>
