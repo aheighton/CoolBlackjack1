@@ -62,12 +62,12 @@ public class Card
 	{
 		StringBuilder output = new StringBuilder();
 
-		if (getColour() == 'R')
-		{
-			output.append(ANSI_RED + "[");
-		} else
+		if (getColour() == 'B')
 		{
 			output.append(ANSI_BLACK + "[");
+		} else
+		{
+			output.append(ANSI_RED + "[");
 		}
 
 		if (getValue().equals("1"))

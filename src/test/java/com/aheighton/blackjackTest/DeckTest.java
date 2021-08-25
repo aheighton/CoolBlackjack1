@@ -2,6 +2,8 @@ package com.aheighton.blackjackTest;
 
 import com.aheighton.blackjack.*;
 import org.junit.jupiter.api.*;
+
+import static com.aheighton.blackjack.Card.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeckTest
@@ -34,5 +36,28 @@ class DeckTest
 
 		deck.addCard(player.getHand().removeCard());
 		assertEquals(deck.toString(),new Deck().toString(),"Adding and removing cards is not consistent.");
+	}
+
+	@Test
+	void testIncorrectAssignments()
+	{
+		Card card = new Card("2",'?');
+		assertEquals(ANSI_RED+"[2?]"+ANSI_RESET, card.toString(), "Incorrect suit generates correctly. ");
+
+		BlackJackPlayer player = new BlackJackPlayer("Player", false, false);
+		assertNull(player.getAbility(),"getAbility is not null for standard blackjack.");
+		try
+		{
+			player.newAbility();
+			fail("newAbility generated without error for standard blackjack");
+		} catch (Exception ignored){}
+
+		try
+		{
+			player.setAbility("");
+			fail("setAbility executed without error for standard blackjack");
+		} catch (Exception ignored){}
+
+
 	}
 }
