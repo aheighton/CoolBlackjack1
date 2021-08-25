@@ -41,4 +41,23 @@ class GameTest
 		assertEquals(player1.getHand().toString(),hand1.toString(),"Cards are not dealt correctly from the top of the deck at game start.");
 		assertEquals(player2.getHand().toString(),hand2.toString(),"Cards are not dealt correctly from the top of the deck at game start.");
 	}
+
+	@Test
+	void testGamePlay()
+	{
+		Player player1 = new BlackJackPlayer("P1",false,false);
+		Player player2 = new BlackJackPlayer("P2",true,true);
+		List<Player> players = new LinkedList<>();
+		players.add(player1);
+		players.add(player2);
+		Game game = new BlackJackGame(players);
+		game.setDeck(new Deck());
+		//TODO: make this a specific deck to target all possible actions
+
+		game.deal();
+		game.play(player1);
+		game.play(player1,"stick");
+		game.play(player2);
+		assertEquals(player1.toString(),game.getWinner().toString(),"The winner does not win.");
+	}
 }
